@@ -11,7 +11,23 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [18.x]
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/blogdb-test
 
     steps:
       - uses: actions/checkout@v2
@@ -33,7 +49,7 @@ jobs:
       - name: Use Node.js 10.x
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
       - run: docker build -t setup-nodejs
       - run: echo "Deploy"
 
@@ -48,6 +64,6 @@ jobs:
       - name: Use Node.js 10.x
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
       - run: docker build -t setup-nodejs
       - run: echo "Deploy"
