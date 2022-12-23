@@ -1,0 +1,69 @@
+version: "3"
+
+services:
+  app:
+    build: .
+    entrypoint: .docker/entrypoint.sh
+    container_name: blogapi
+    ports:
+      - "3333:3333"
+    volumes:
+      - .:/home/node/app
+    depends_on:
+      - db
+      - dbtest
+      - redis
+
+  db:
+    build: .docker/postgres
+    container_name: blogapi-db
+    restart: always
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=db_blog
+
+  dbtest:
+    build: .docker/postgres
+    container_name: blogapi-dbtest
+    restart: always
+    tty: true
+    ports:
+      - "5432:5432"
+    volumes:
+      - .docker/dbdata:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=docker
+      - POSTGRES_DB=dbtest_blog
+
+  redis:
+    image: "bitnami/redis:latest"
+    container_name: apiblog-redis
+    ports:
+      - "6379:6379"
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+
+  redisinsight:
+    image: "redislabs/redisinsight:latest"
+    container_name: apiblog-redisinsight
+    ports:
+      - "8001:8001"
+    volumes:
+      - .docker/dbdata:/var/lib/redisinsight/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: blogapi-pgadmin
+    tty: true
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=admin@admin.com
+      - PGADMIN_DEFAULT_PASSWORD=admin
+    ports:
+      - "8000:80"
+    depends_on:
+      - db
