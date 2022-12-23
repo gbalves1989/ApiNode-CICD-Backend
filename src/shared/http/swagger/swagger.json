@@ -1,0 +1,25 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Documentação API Blog",
+    "description": "Documentação API Blog especificações",
+    "verion": "1.0.0",
+    "contact": {
+      "name": "Gabriel B Alves",
+      "email": "gbalves1989@gmail.com"
+    }
+  },
+  "security": {
+    "bearerAuth": []
+  },
+  "paths": {},
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
