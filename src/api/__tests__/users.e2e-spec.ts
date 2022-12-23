@@ -8,7 +8,7 @@ describe('Teste nas rotas de usuários', () => {
   test('Usuário criado com sucesso.', async () => {
     const response = await request(app).post('/api/v1/users').send({
       name: 'gabriel alves',
-      email: 'gabriel1989@gmail.com',
+      email: 'gabriel@gmail.com',
       password: 'gabriel1989',
     })
 
