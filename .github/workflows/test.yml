@@ -26,7 +26,11 @@ jobs:
         ports:
           - 5432:5432
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/blogdb-test
+      DATABASE_USER_TEST: postgres
+      DATABASE_PASS_TEST: postgres
+      DATABASE_HOST_TEST: localhost
+      DATABASE_PORT_TEST: 5432
+      DATABASE_NAME_TEST: blogdb_test
 
     steps:
       - uses: actions/checkout@v2
