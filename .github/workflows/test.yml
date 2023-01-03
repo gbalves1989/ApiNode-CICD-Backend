@@ -25,15 +25,18 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
-
     env:
-      JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-      PORT: ${{ secrets.PORT }}
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/blogdb-test
 
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
+        env:
+          DATABASE_USER_TEST: postgres
+          DATABASE_PASS_TEST: postgres
+          DATABASE_HOST_TEST: localhost
+          DATABASE_PORT_TEST: 5432
+          DATABASE_NAME_TEST: blogdb_test
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
