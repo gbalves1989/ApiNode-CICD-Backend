@@ -30,6 +30,7 @@ jobs:
       JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/blogdb_test?schema=public
 
     steps:
       - uses: actions/checkout@v2
