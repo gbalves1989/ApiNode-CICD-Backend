@@ -1,7 +1,12 @@
-FROM node:18
+FROM node:18.12-slim
 
-USER node
+WORKDIR /usr/src/app
 
-WORKDIR /home/node/app
+COPY package*.json ./
 
-COPY src ./src
+RUN npm install
+COPY . .
+EXPOSE 3333
+
+RUN npx prisma generate
+CMD ["npm", "run", "dev"]
