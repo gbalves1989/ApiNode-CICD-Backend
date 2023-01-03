@@ -30,7 +30,7 @@ jobs:
       JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
       PORT: ${{ secrets.PORT }}
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/blogdb_test?schema=public
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
     steps:
       - uses: actions/checkout@v2
@@ -39,5 +39,5 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npx prisma migrate deploy
+      - run: npx prisma migrate dev
       - run: npm run test:e2e
