@@ -18,12 +18,6 @@ describe('Teste nas rotas de usuários', () => {
   })
 
   test('Usuário logado com sucesso.', async () => {
-    await request(app).post('/api/v1/users').send({
-      name: 'gabriel alves',
-      email: 'gabriel@gmail.com',
-      password: 'gabriel1989',
-    })
-    
     const response = await request(app).post('/api/v1/users/auth').send({
       email: 'gabriel@gmail.com',
       password: 'gabriel1989',
@@ -34,12 +28,6 @@ describe('Teste nas rotas de usuários', () => {
   })
 
   test('Informações do usuário realizado com sucesso.', async () => {
-    await request(app).post('/api/v1/users').send({
-      name: 'gabriel alves',
-      email: 'gabriel@gmail.com',
-      password: 'gabriel1989',
-    })
-    
     const responseToken = await request(app).post('/api/v1/users/auth').send({
       email: 'gabriel@gmail.com',
       password: 'gabriel1989',
@@ -56,12 +44,6 @@ describe('Teste nas rotas de usuários', () => {
   })
 
   test('Usuário atualizado com sucesso.', async () => {
-    await request(app).post('/api/v1/users').send({
-      name: 'gabriel alves',
-      email: 'gabriel@gmail.com',
-      password: 'gabriel1989',
-    })
-    
     const responseToken = await request(app).post('/api/v1/users/auth').send({
       email: 'gabriel@gmail.com',
       password: 'gabriel1989',
@@ -80,12 +62,6 @@ describe('Teste nas rotas de usuários', () => {
   })
 
   test('Avatar do usuário atualizado com sucesso.', async () => {
-    await request(app).post('/api/v1/users').send({
-      name: 'gabriel alves',
-      email: 'gabriel@gmail.com',
-      password: 'gabriel1989',
-    })
-    
     const responseToken = await request(app).post('/api/v1/users/auth').send({
       email: 'gabriel@gmail.com',
       password: 'gabriel1989',
