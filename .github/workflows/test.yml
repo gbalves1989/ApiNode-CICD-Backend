@@ -25,8 +25,11 @@ jobs:
           --health-retries 5
         ports:
           - 5432:5432
+
     env:
-      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/blogdb-test
+      JWT_EXPIRES_IN: ${{ secrets.JWT_EXPIRES_IN }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      PORT: ${{ secrets.PORT }}
 
     steps:
       - uses: actions/checkout@v2
