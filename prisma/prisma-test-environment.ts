@@ -6,7 +6,7 @@ import { Client } from 'pg'
 import util from 'util'
 import crypto from 'crypto'
 
-dotenv.config({ path: '.env' })
+dotenv.config({ path: '.env.example' })
 
 const execSync = util.promisify(exec)
 
